@@ -1,0 +1,11 @@
+<p-toolbar class="p-shadow-4" styleClass="custom-bg-white p-m-0">
+    <div class="p-toolbar-group-left">
+        <img class="p-mx-2" routerLink="" style=" height: auto;cursor: pointer;" src="assets/images/courseHunt.png" />
+    </div>
+    
+    <div class="p-toolbar-group-right" *ngIf="isLoggedIn" >
+        <!-- <button type="button" pButton icon="pi pi-bars" label="Show" ></button> -->
+        <button pButton pRipple type="button" [label]="loggedUser.name?loggedUser.name:'User'" icon="pi pi-user" iconPos="right" (click)="menu.toggle($event)" class="p-button-info p-button-text"></button>
+        <p-menu #menu [popup]="true" [model]="rightMenu"></p-menu>
+    </div>
+</p-toolbar>

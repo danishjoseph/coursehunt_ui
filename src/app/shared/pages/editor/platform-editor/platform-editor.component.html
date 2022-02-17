@@ -1,0 +1,71 @@
+<div class="p-grid p-p-6 p-jc-center p-text-center">
+  <div class="p-col-12 p-lg-3 p-sm-12 p-xl-3">
+    <app-editor-sidebar></app-editor-sidebar>
+  </div>
+  <div class="p-col-12 p-lg-8 p-sm-12 p-xl-8">
+    <p-card
+      [style]="{
+        border: '0px solid grey',
+        boxShadow: 'box-shadow: 0px 7px 49px -8px #D6E5E4'
+      }"
+      styleClass="p-m-1 p-p-4"
+    >
+      <ng-template pTemplate="header">
+        <form [formGroup]="platformForm">
+          <div class="p-mb-1" style="border: 0px">
+            <img alt="Card" style="max-width: 237px" [src]="url" />
+            <app-file-uploader
+              (onFileUpload)="onPlatformImgChange($event)"
+              (onFileCleared)="clearImg()"
+            ></app-file-uploader>
+          </div>
+          <div class="p-mb-1 p-p-2">
+            <input
+              size="small"
+              placeholder="Platform name"
+              formControlName="platformName"
+              type="text"
+              pInputText
+            />
+          </div>
+          <div class="p-mb-1 p-p-2">
+            <input
+              size="small"
+              placeholder="Course Rating"
+              formControlName="platformRating"
+              type="number"
+              pInputText
+            />
+          </div>
+          <div class="p-mb-1 p-p-2">
+            <input
+              size="small"
+              placeholder="Platform link"
+              formControlName="platformLink"
+              type="text"
+              pInputText
+            />
+          </div>
+
+          <div>
+            <button
+              class="p-button p-button-success"
+              (click)="submitPlatform(platformForm)"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </ng-template>
+    </p-card>
+    <div class="p-mt-3 p-p-3" style="background-color: silver;">
+      <app-edit-table
+        tableTitle="Platforms"
+        [tableData]="platformData"
+        [tableHeaders]="platformDataHeaders"
+        (onRowEditSaveOut)="onPlatformEdit($event)"
+        (onRowDeleteOut)="onPlatformDelete($event)"
+      ></app-edit-table>
+    </div>
+  </div>
+</div>

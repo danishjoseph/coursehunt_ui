@@ -1,0 +1,9 @@
+<div class="p-grid p-d-flex p-jc-around p-text-left p-m-6">
+    <div
+      *ngFor="let article of articleList"
+      class="p-col-12 p-lg-6 p-xl-3 p-sm-6"
+    >
+      <app-article-item [articleInput]="article" ></app-article-item>
+    </div>
+  </div>
+  

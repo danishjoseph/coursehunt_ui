@@ -1,0 +1,117 @@
+<p-card
+  [style]="{
+    border: '0px solid grey',
+    boxShadow: '0px 7px 49px -8px #D6E5E4',
+    minHeight: '300px',
+    backgroundColor: '#FFFF'
+  }"
+>
+  <ng-template pTemplate="header">
+    <div
+      class="p-p-2 p-d-flex p-jc-center"
+      style="
+        border: 0px;
+        box-shadow: 0px 7px 49px -8px #d6e6e4;
+        border-radius: 5px;
+        background-color: white;
+      "
+    >
+      <img alt="Card" src="assets//images/course-card.png" />
+    </div>
+    <div class="p-d-flex p-flex-column p-p-2" style="background-color: white">
+      <span style="font-weight: 800">{{ courseInput.Name }}</span>
+      <span
+        class="p-my-2"
+        style="
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          /* or 150% */
+
+          text-transform: capitalize;
+        "
+        >{{ courseInput.Description }}</span
+      >
+    </div>
+    <hr style="width: 90%; background-color: silver" color="silver" />
+    <div class="p-grid p-p-0">
+      <div class="p-col-12 p-lg-4 p-sm-4 p-p-2">
+        <div
+          class="p-d-flex p-flex-column p-jc-center p-text-center"
+          style="background-color: white"
+        >
+        <span class="custom-text-theme-small">Ratings </span>
+        <span class="custom-text-theme-small"
+          >{{courseInput.Rating}}<i class="pi pi-star" style="color: gold; font-size: 16px"></i
+        ></span>
+        </div>
+      </div>
+      <div class="p-col-12 p-lg-4 p-sm-4">
+        <div
+          class="p-d-flex p-flex-column p-jc-center p-text-center"
+          style="background-color: white"
+        >
+          <span class="custom-text-theme-small">Upvotes</span>
+          <span class="custom-text-theme-small">{{courseInput.Upvotes}} </span>
+        </div>
+      </div>
+      <div class="p-col-12 p-lg-4 p-sm-4">
+        <div
+          class="p-d-flex p-flex-column p-jc-center p-text-center"
+          style="background-color: white"
+        >
+          <span class="custom-text-theme-small">Duration</span>
+          <span class="custom-text-theme-small">3 months </span>
+        </div>
+      </div>
+    </div>
+
+    <hr style="width: 90%; background-color: silver" color="silver" />
+
+    <div
+      class="
+        p-d-flex p-flex-sm-column p-flex-lg-row p-jc-around p-ai-center p-my-4
+      "
+    >
+      <button
+        *ngIf="!courseInput.isFav"
+        pButton
+        pRipple
+        type="button"
+        (click)="addToFav(courseInput._id)"
+        icon="pi pi-heart"
+        class="p-button-rounded custom-button-primary"
+      ></button>
+      <button
+        *ngIf="courseInput.isFav"
+        pButton
+        pRipple
+        type="button"
+        (click)="addToFav(courseInput._id)"
+        icon="pi pi-check-circle"
+        class="p-button-rounded p-button-success"
+      ></button>
+      <div>
+        <button class="p-button custom-button-outlined">Go To Course</button>
+      </div>
+          <button
+          *ngIf="!courseInput.isVoted"
+          pButton
+          pRipple
+          (click)="toggleFav(courseInput._id)"
+          type="button"
+          icon="pi pi-arrow-up"
+          class="p-button-rounded custom-text-primary p-button-text"
+          ><span class="p-mx-1">1</span></button>
+          <button
+          *ngIf="courseInput.isVoted"
+          pButton
+          (click)="toggleFav(courseInput._id)"
+          pRipple
+          type="button"
+          icon="pi pi-check"
+          class="p-button-rounded custom-text-primary p-button-text p-button-success"
+          ><span class="p-mx-1">+1</span></button>
+    </div>
+  </ng-template>
+</p-card>

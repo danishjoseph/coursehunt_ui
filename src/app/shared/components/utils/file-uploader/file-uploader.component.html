@@ -1,0 +1,12 @@
+<!-- <p-fileUpload mode="basic" name="demo[]" accept="image/*" [maxFileSize]=1000000 (onUpload)="onUpload($event)"></p-fileUpload> -->
+<p-fileUpload
+  mode="advanced"
+  name="demo[]"
+  url="./upload.php"
+  accept="image/*"
+  [maxFileSize]="1000000"
+  [customUpload]="true"
+  (onClear)="onClear()"
+  (onRemove)="onRemove($event)"
+  (uploadHandler)="onBasicUpload($event)"
+></p-fileUpload>

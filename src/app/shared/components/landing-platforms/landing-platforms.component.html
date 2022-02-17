@@ -1,0 +1,39 @@
+<div
+  class="p-grid p-d-flex p-jc-center p-text-center"
+  style="background-color: #efefff"
+>
+  <div
+    class="
+      p-col-12 p-lg-12 p-sm-12 p-d-flex p-jc-center p-flex-column p-text-center
+    "
+  >
+    <h1><span class="custom-text-primary">E-Learning</span> Platforms</h1>
+    <span style="font-size: large" class="p-text-capitalize"
+      >More than 100+ learning platforms</span
+    >
+  </div>
+  <div class="p-col-12 p-lg-9 p-sm-9">
+    <div class="p-grid p-d-flex p-jc-center p-mx-5">
+      <div *ngFor="let platform of platformList" class="p-col-12 p-lg-6 p-xl-3 p-sm-6">
+        <app-landing-platform-item [itemObject]="platform" ></app-landing-platform-item>
+      </div>
+    </div>
+  </div>
+  <div class="p-col-12 p-lg-12 p-sm-9">
+    <button class="custom-button-primary p-button p-px-6 p-mt-3 p-mb-6" routerLink="/platforms" >
+      <span
+        style="
+          font-family: Poppins;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 30px;
+          letter-spacing: 0em;
+          text-align: left;
+        "
+      >
+        View All
+      </span>
+    </button>
+  </div>
+</div>

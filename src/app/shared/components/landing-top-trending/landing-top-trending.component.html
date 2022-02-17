@@ -1,0 +1,60 @@
+<div class="p-grid" style="background-color: white">
+  <div
+    class="
+      p-col-12 p-lg-12 p-sm-12 p-d-flex p-jc-center p-flex-column p-text-center
+    "
+  >
+    <h1><span class="custom-text-primary">Top</span> Trending</h1>
+    <span style="font-size: large" class="p-text-capitalize"
+      >Here are Top Trending Categories across multiple platforms you can pick
+      your<br />
+      field and start learning with the best match for you</span
+    >
+  </div>
+  <div
+    class="
+      p-col-12
+      p-lg-12
+      p-sm-12
+      p-d-flex
+      p-jc-center
+      p-flex-column
+      p-text-center
+    "
+  >
+    <div class="p-m-2">
+      <p-carousel
+        [value]="products"
+        [numVisible]="5"
+        [numScroll]="3"
+        [circular]="false"
+        [responsiveOptions]="responsiveOptions"
+        [style]= "{border: '0px'}"
+      >
+        <ng-template pTemplate="header"> </ng-template>
+        <ng-template let-product pTemplate="item">
+          <div class="product-item">
+            <app-top-trending-item [itemObject]="product"></app-top-trending-item>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+  <div class="p-col-12 p-lg-12 p-sm-9 p-d-flex p-jc-center">
+    <button class="custom-button-primary p-button p-px-6 p-mt-3 p-mb-6" routerLink="/categories" >
+      <span
+        style="
+          font-family: Poppins;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 30px;
+          letter-spacing: 0em;
+          text-align: left;
+        "
+      >
+        View All
+      </span>
+    </button>
+  </div>
+</div>

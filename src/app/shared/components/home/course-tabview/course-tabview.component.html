@@ -1,0 +1,44 @@
+<div class="p-d-flex p-jc-center">
+  <span class="p-input-icon-left" style="width: 100%">
+    <i class="pi pi-search p-inputtext-lg" style="color: #635dff"></i>
+    <input
+      type="text"
+      style="width: 100%; border-color: #635dff; color: #635dff"
+      pInputText
+      placeholder="Search"
+      (keyup)="search($event)"
+    />
+  </span>
+</div>
+<p-tabView styleClass="tabview-custom" (onChange)="handleTabChange($event)">
+  <p-tabPanel *ngFor="let courseType of courseTypes; let i = index">
+    <ng-template pTemplate="header">
+      <div style="width: 8rem" class="p-text-center">
+        <span
+          style="
+            font-size: 16px;
+            line-height: 100%;
+            /* identical to box height, or 16px */
+
+            text-transform: capitalize;
+
+            color: #635dff;
+          "
+          >{{ courseType.label }}</span
+        ><br />
+        <span
+          style="
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 100%;
+            /* identical to box height, or 14px */
+
+            text-transform: capitalize;
+          "
+          >({{countIndex[i]}})</span
+        >
+      </div>
+    </ng-template>
+    <app-course-card-list (onCourseLoad)="setCount(i,$event)" [courseTypeInput]="courseType" [courseQueryInput]="selectedCourseQuery" ></app-course-card-list>
+  </p-tabPanel>
+</p-tabView>

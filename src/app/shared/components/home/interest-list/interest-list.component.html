@@ -1,0 +1,8 @@
+<div class="p-grid p-d-flex p-jc-center p-text-center p-mx-5">
+  <div
+    *ngFor="let interest of interestList"
+    class="p-col-12 p-lg-6 p-xl-3 p-sm-6"
+  >
+    <app-top-trending-item [itemObject]="interest"></app-top-trending-item>
+  </div>
+</div>

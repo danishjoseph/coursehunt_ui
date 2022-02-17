@@ -1,0 +1,171 @@
+<div class="card">
+  <h5>{{ tableTitle }}</h5>
+  <p-table
+    [value]="tableData"
+    dataKey="id"
+    editMode="row"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of tableHeaders">
+          {{ col.header }}
+        </th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-rowData
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="rowData">
+        <td *ngFor="let col of tableHeaders">
+          <div *ngIf="col.inputType === 'autocomplete' && editing">
+            <app-autocomplete
+              [label]="col.header"
+              [dataInput]="col.inputDropDownData"
+              (onValueSelect)="
+                onDropDownSelect($event); initValueProcess(col, rowData)
+              "
+            ></app-autocomplete>
+          </div>
+          <div *ngIf="col.inputType === 'autocomplete' && !editing">
+            {{ rowData[col.field] }}
+          </div>
+
+          <div *ngIf="!col.inputType">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData[col.field]"
+                />
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ rowData[col.field] }}
+              </ng-template>
+            </p-cellEditor>
+          </div>
+        </td>
+        <td style="text-align: center">
+          <button
+            *ngIf="!editing && !deleting"
+            pButton
+            type="button"
+            pInitEditableRow
+            icon="pi pi-pencil"
+            (click)="onRowEditInit(rowData)"
+            class="p-button-rounded p-button-text"
+          ></button>
+          <button
+            *ngIf="!deleting && !editing"
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            (click)="onRowDeleteInit(rowData)"
+            class="p-button-rounded p-button-text p-button-danger"
+          ></button>
+          <!-- Editing buttons -->
+          <button
+            *ngIf="editing"
+            pButton
+            pRipple
+            type="button"
+            pSaveEditableRow
+            icon="pi pi-check"
+            (click)="onRowEditSave(rowData)"
+            class="p-button-rounded p-button-text p-button-success p-mr-2"
+          ></button>
+          <button
+            *ngIf="editing"
+            pButton
+            pRipple
+            type="button"
+            pCancelEditableRow
+            icon="pi pi-times"
+            (click)="onRowEditCancel(rowData, ri)"
+            class="p-button-rounded p-button-text p-button-danger"
+          ></button>
+
+          <!-- Deleting buttons -->
+          <button
+            *ngIf="deleting"
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-check"
+            (click)="onRowDelete(rowData)"
+            class="p-button-rounded p-button-text p-button-success p-mr-2"
+          >
+            De
+          </button>
+          <button
+            *ngIf="deleting"
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-times"
+            (click)="onRowDeleteCancel(rowData, ri)"
+            class="p-button-rounded p-button-text p-button-danger"
+          >
+            No
+          </button>
+        </td>
+      </tr>
+      <!-- <tr [pEditableRow]="product">
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.code">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.code}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.name" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.name}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown [options]="statuses" [(ngModel)]="product.inventoryStatus" [style]="{'width':'100%'}"></p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.inventoryStatus}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.price">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.price | currency: 'USD'}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td style="text-align:center">
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                    </td>
+                </tr> -->
+    </ng-template>
+  </p-table>
+</div>

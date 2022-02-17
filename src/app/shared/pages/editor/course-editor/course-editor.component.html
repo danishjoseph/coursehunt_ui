@@ -1,0 +1,142 @@
+<div class="p-grid p-p-6 p-jc-center p-text-center">
+  <div class="p-col-12 p-lg-3 p-sm-12 p-xl-3">
+    <app-editor-sidebar></app-editor-sidebar>
+  </div>
+  <div class="p-col-12 p-lg-8 p-sm-12 p-xl-8 p-shadow-23">
+    <p-card
+      [style]="{
+        border: '0px solid grey',
+        boxShadow: 'box-shadow: 0px 7px 49px -8px #D6E5E4'
+      }"
+      styleClass="p-m-1 p-p-4"
+    >
+      <ng-template pTemplate="header">
+        <h3>Add Course</h3>
+        <form [formGroup]="courseForm">
+          <div class="p-mb-1" style="border: 0px">
+            <img alt="Card" style="max-width: 237px" [src]="url" />
+            <app-file-uploader
+              (onFileUpload)="onCourseImgChange($event)"
+              (onFileCleared)="clearImg()"
+            ></app-file-uploader>
+          </div>
+          <div class="p-grid">
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <input
+                size="small"
+                placeholder="Course name"
+                formControlName="courseName"
+                type="text"
+                pInputText
+              />
+            </div>
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <input
+                size="small"
+                placeholder="Course Rating"
+                formControlName="courseRating"
+                type="number"
+                pInputText
+              />
+            </div>
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <app-autocomplete
+                [dataInput]="platformData"
+                label="Select Platform"
+                (onValueSelect)="onPlatformSelect($event)"
+              ></app-autocomplete>
+            </div>
+
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <app-autocomplete
+                [dataInput]="categoriesData"
+                label="Select Category"
+                (onValueSelect)="onCategorySelect($event)"
+              ></app-autocomplete>
+            </div>
+            <div class="p-col-12 p-lg-12 p-sm-12 p-p-4">
+              <div class="p-grid p-text-center p-ai-center p-jc-between">
+                Course Duration:<input
+                  style="width: 50px"
+                  placeholder="Course Duration"
+                  formControlName="courseDuration"
+                  type="number"
+                  pInputText
+                />
+                <app-autocomplete
+                  [dataInput]="durationMasterData"
+                  label="Select Duration Unit"
+                  (onValueSelect)="onDurationSelect($event)"
+                ></app-autocomplete>
+              </div>
+            </div>
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <app-autocomplete
+                [dataInput]="levelData"
+                label="Select Level"
+                (onValueSelect)="onLevelSelect($event)"
+              ></app-autocomplete>
+            </div>
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <app-autocomplete
+                [dataInput]="priceData"
+                label="Select Price Type"
+                (onValueSelect)="onPriceSelect($event)"
+              ></app-autocomplete>
+            </div>
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <app-autocomplete
+                [dataInput]="certificateData"
+                label="Select Certification"
+                (onValueSelect)="onCertSelect($event)"
+              ></app-autocomplete>
+            </div>
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <app-autocomplete
+                [dataInput]="typeData"
+                label="Select Type"
+                (onValueSelect)="onTypeSelect($event)"
+              ></app-autocomplete>
+            </div>
+            <div class="p-col-12 p-lg-12 p-sm-12">
+              <textarea
+                style="width: 100%"
+                pInputTextarea
+                placeholder="description"
+                formControlName="courseDescription"
+              ></textarea>
+            </div>
+            <div class="p-col-12 p-lg-6 p-sm-12">
+              <app-autocomplete
+                [dataInput]="catmasterData"
+                label="Select Tech Category"
+                (onValueSelect)="onCatmasterSelect($event)"
+              ></app-autocomplete>
+            </div>
+          </div>
+          <div>
+            <button class="p-button p-button-success" (click)="submitCourse()">
+              Submit
+            </button>
+          </div>
+        </form>
+      </ng-template>
+    </p-card>
+    <div class="p-mt-3 p-p-3" style="background-color: silver;">
+      <app-course-table
+        tableTitle="Courses"
+        [tableData]="courseTableData"
+        [tableHeaders]="courseDataHeaders"
+        (onRowEditSaveOut)="onCourseEdit($event)"
+        (onRowDeleteOut)="onCourseDelete($event)"
+        [platformData]="platformData"
+        [categoriesData]="categoriesData"
+        [levelData]="levelData"
+        [certificateData]="certificateData"
+        [priceData]="priceData"
+        [typeData]="typeData"
+        [catmasterData]="catmasterData"
+      ></app-course-table>
+    </div>
+  </div>
+</div>

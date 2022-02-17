@@ -1,0 +1,27 @@
+<div class="p-grid p-p-6 p-jc-center p-text-center">
+    <div class="p-col-12 p-lg-3 p-sm-12 p-xl-3">
+      <app-editor-sidebar></app-editor-sidebar>
+    </div>
+    <div class="p-col-12 p-lg-8 p-sm-12 p-xl-8 p-shadow-23">
+     
+      <div class="p-mt-3 p-p-3" style="background-color: silver;">
+        <app-course-table
+          tableTitle="Courses"
+          [tableData]="courseTableData"
+          [tableHeaders]="courseDataHeaders"
+          (onRowEditSaveOut)="onCourseEdit($event)"
+          (onRowDeleteOut)="onCourseDelete($event)"
+          (onCourseActivate)="onCourseActivate($event)"
+          [platformData]="platformData"
+          [categoriesData]="categoriesData"
+          [levelData]="levelData"
+          [certificateData]="certificateData"
+          [priceData]="priceData"
+          [typeData]="typeData"
+          [catmasterData]="catmasterData"
+          isRequest="true"
+        ></app-course-table>
+      </div>
+    </div>
+  </div>
+  

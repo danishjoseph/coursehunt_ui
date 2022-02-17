@@ -1,0 +1,34 @@
+<div styleClass="p-shadow-11 p-col-12 p-xl-12 p-sm-12 p-m-xl-2">
+    <h3>Filter Courses</h3>
+    <h5>Level</h5>
+    <div class="p-field-checkbox" *ngFor="let level of levelFilters">
+      <p-checkbox name="levels" [value]="level._id" [inputId]="level._id" [(ngModel)]="selectedLevel"></p-checkbox>
+      <label [for]="level._id">{{level.name}}</label>
+    </div>
+
+    <h5>Certificate</h5>
+
+    <div class="p-field-checkbox" *ngFor="let cert of certFilters">
+      <p-checkbox name="certs" [value]="cert._id" [inputId]="cert._id" [(ngModel)]="selectedCerts"></p-checkbox>
+      <label [for]="cert._id">{{cert.name}}</label>
+    </div>
+
+    <h5>Price</h5>
+
+    <div class="p-field-checkbox" *ngFor="let price of priceFilters">
+      <p-checkbox name="price" [value]="price._id" [inputId]="price._id" [(ngModel)]="selectedPrices"></p-checkbox>
+      <label [for]="price._id">{{price.name}}</label>
+    </div>
+
+    <h5>Trend</h5>
+
+    <div class="p-field-checkbox" *ngFor="let trend of trendFilters">
+      <p-checkbox name="trends" [value]="trend._id" [inputId]="trend._id" [(ngModel)]="selectedTrends"></p-checkbox>
+      <label [for]="trend._id">{{trend.name}}</label>
+    </div>
+
+    <div>
+      <button class="p-button p-button-success" (click)="applyFilters()">Apply</button>
+    </div>
+
+</div>

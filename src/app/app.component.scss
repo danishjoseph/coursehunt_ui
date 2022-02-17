@@ -1,0 +1,80 @@
+.topHeader {
+  background-color: #0b0038;
+  color: #fff;
+  position: absolute;
+  top: 0px;
+  /* bottom:50px; */
+  left: 0px;
+  right: 0px;
+  height: 60px;
+}
+
+.mainScreen {
+  /* background-color: #edffe8; */
+  /* background-color: #F1F1F1; */
+  background-color: white;
+  color: #000;
+  position: relative;
+  top: 80px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  font-family: "poppins";
+}
+
+.span {
+  font-weight: 500;
+}
+
+:host ::ng-deep {
+  .p-component {
+    font-family: "poppins";
+    font-size: 1rem;
+    font-weight: normal;
+  }
+
+  .custom-font-poppins{
+    font-family: "poppins";
+  }
+
+  .custom-button-primary {
+    background-color: #635dff;
+  }
+  
+  .custom-bg-white {
+    background-color: #ffff;
+  }
+
+  .custom-text-primary {
+    color: #635dff;
+  }
+
+  .custom-text-theme-small {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: capitalize;
+  }
+
+  .custom-text-theme-medium {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    /* or 187% */
+
+    text-transform: capitalize;
+  }
+
+  .custom-button-pink {
+    background-color: red;
+    border-color: white;
+  }
+
+  .p-button.custom-button-outlined {
+    background-color: transparent;
+    color: #635dff;
+    border: 2px solid #635dff;
+    font-family: 'poppins';
+  }
+}

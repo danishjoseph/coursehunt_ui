@@ -1,0 +1,10 @@
+<h3 *ngIf="platformName">Showing results from <span class="custom-text-primary" >{{platformName}}...</span></h3>
+<h3 *ngIf="categoryName">Showing results from cateogory <span class="custom-text-primary" >{{categoryName}}...</span></h3>
+<div *ngIf="courseList">
+<h3 *ngIf="courseList.length == 0"><span class="custom-text-primary" >No data available here.<br> But hey, we have other catogories. Check them out!</span></h3>
+</div>
+<div class="p-d-flex p-flex-wrap">
+    <div class="p-col-12 p-sm-5 p-lg-4" *ngFor="let course of courseList">
+      <app-course-card [courseInput]="course" (onCardUpdate)="applyFilters()" ></app-course-card>
+    </div>
+  </div>

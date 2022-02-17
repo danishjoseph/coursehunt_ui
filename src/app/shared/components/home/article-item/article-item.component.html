@@ -1,0 +1,51 @@
+<p-card
+  [style]="{
+    border: '0px solid grey',
+    boxShadow: '0px 7px 49px -8px #D6E5E4',
+    minHeight: '300px',
+    backgroundColor: '#FFFF'
+  }"
+>
+  <ng-template pTemplate="header">
+    <div
+      class="p-p-2 p-d-flex p-jc-center"
+      style="
+        border: 0px;
+        box-shadow: 0px 7px 49px -8px #d6e6e4;
+        border-radius: 5px;
+        background-color: white;
+      "
+    >
+      <img
+        alt="Card"
+        [src]="articleInput.imgSrc"
+      />
+    </div>
+    <div class="p-d-flex p-flex-column p-p-2" style="background-color: white">
+      <span style="font-weight: 800; color: #635dff;">{{articleInput.Name}}</span>
+      <span
+        class="p-mt-2"
+        style="
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 130%;
+          text-transform: capitalize;
+        "
+        >{{articleInput.Title}}</span
+      >
+      <span
+        style="
+          font-weight: 200;
+          font-size: 16px;
+          line-height: 24px;
+          color: gray;
+          text-transform: capitalize;
+        "
+        >{{articleInput.ShortDesc}}</span>
+    </div>
+    <div class="p-d-flex p-flex-sm-column p-flex-lg-row p-jc-between p-ai-center p-my-4 p-px-2">
+        <span style="text-decoration-line: underline; cursor: pointer">Read More</span>
+        <span>5 mins ago</span>
+      </div>
+  </ng-template>
+</p-card>

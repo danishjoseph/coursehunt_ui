@@ -1,0 +1,357 @@
+<div class="card">
+  <h5>{{ tableTitle }}</h5>
+  <p-table
+    [value]="tableData"
+    dataKey="_id"
+    editMode="row"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <!-- <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let col of tableHeaders">
+            {{ col.header }}
+          </th>
+          <th>Actions</th>
+        </tr>
+      </ng-template> -->
+    <ng-template
+      pTemplate="body"
+      let-rowData
+      let-editing="editingCus"
+      let-ri="rowIndex"
+    >
+      <div class="p-col-12 p-sm-5 p-lg-4">
+        <!-- <app-course-card [courseInput]="rowData"></app-course-card> -->
+        <p-card
+          [style]="{
+            border: '0px solid grey',
+            boxShadow: '0px 7px 49px -8px #D6E5E4',
+            backgroundColor: '#FFFF'
+          }"
+        >
+          <ng-template pTemplate="header">
+             <div *ngIf="!rowData.Status">
+                <span class="p-tag p-tag-rounded p-tag-warning">Waiting for Approval</span>
+             </div> 
+            <div
+              class="p-p-2 p-d-flex p-jc-center"
+              style="
+                border: 0px;
+                box-shadow: 0px 7px 49px -8px #d6e6e4;
+                border-radius: 5px;
+                background-color: white;
+              "
+            >
+              <img alt="Card" src="assets//images/course-card.png" />
+            </div>
+            <div
+              class="p-d-flex p-flex-column p-p-2"
+              style="background-color: white"
+            >
+              <div *ngIf="editingCus">
+                <input pInputText type="text" [(ngModel)]="rowData.Name" />
+              </div>
+              <div *ngIf="!editingCus">
+                <span style="font-weight: 800">{{ rowData.Name }} </span>
+              </div>
+              <div *ngIf="editingCus">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData.Description"
+                />
+              </div>
+              <div *ngIf="!editingCus">
+                <span
+                  class="p-my-2"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                    /* or 150% */
+
+                    text-transform: capitalize;
+                  "
+                  >{{ rowData.Description }}</span
+                >
+              </div>
+            </div>
+            <hr style="width: 90%; background-color: silver" color="silver" />
+            <div class="p-grid p-p-0">
+              <div class="p-col-12 p-lg-4 p-sm-4 p-p-2">
+                <div
+                  class="p-d-flex p-flex-column p-jc-center p-text-center"
+                  style="background-color: white"
+                >
+                  <div *ngIf="editingCus">
+                    <input
+                      style="width: 50px"
+                      pInputText
+                      type="text"
+                      [(ngModel)]="rowData.Rating"
+                    />
+                  </div>
+                  <div *ngIf="!editingCus">
+                    <span class="custom-text-theme-small"
+                      >{{ rowData.Rating
+                      }}<i
+                        class="pi pi-star"
+                        style="color: gold; font-size: 16px"
+                      ></i
+                    ></span>
+                  </div>
+                  <span class="custom-text-theme-small">(19,564) </span>
+                </div>
+              </div>
+              <div class="p-col-12 p-lg-4 p-sm-4">
+                <div
+                  class="p-d-flex p-flex-column p-jc-center p-text-center"
+                  style="background-color: white"
+                >
+                  <span class="custom-text-theme-small">Upvotes</span>
+                  <span class="custom-text-theme-small">4561 </span>
+                </div>
+              </div>
+              <div class="p-col-12 p-lg-4 p-sm-4">
+                <div
+                  class="p-d-flex p-flex-column p-jc-center p-text-center"
+                  style="background-color: white"
+                >
+                  <span class="custom-text-theme-small">Duration</span>
+                  <span class="custom-text-theme-small">3 months </span>
+                </div>
+              </div>
+            </div>
+
+            <hr style="width: 90%; background-color: silver" color="silver" />
+
+            <div class="p-grid p-p-0">
+              <div class="p-col-12 p-p-2">
+                <div
+                  style="background-color: white"
+                >
+                  <div *ngIf="editingCus">
+                    <app-autocomplete
+                    [dataInput]="platformData"
+                    label="Select Platform"
+                    (onValueSelect)="onAutoCompleteSelected('platform', rowData,$event)"
+                  ></app-autocomplete>
+                  </div>
+                  <div *ngIf="!editingCus">
+                    <span class="custom-text-theme-small"
+                      >Platform: {{ rowData.PlatformName
+                      }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-col-12 p-p-2">
+                <div
+                  style="background-color: white"
+                >
+                  <div *ngIf="editingCus">
+                    <app-autocomplete
+                    [dataInput]="categoriesData"
+                    label="Select Category"
+                    (onValueSelect)="onAutoCompleteSelected('category', rowData,$event)"
+                  ></app-autocomplete>
+                  </div>
+                  <div *ngIf="!editingCus">
+                    <span class="custom-text-theme-small"
+                      >Category: {{ rowData.CategoryName
+                      }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-col-12 p-p-2">
+                <div
+                  style="background-color: white"
+                >
+                  <div *ngIf="editingCus">
+                    <app-autocomplete
+                    [dataInput]="levelData"
+                    label="Select Level"
+                    (onValueSelect)="onAutoCompleteSelected('level', rowData,$event)"
+                  ></app-autocomplete>
+                  </div>
+                  <div *ngIf="!editingCus">
+                    <span class="custom-text-theme-small"
+                      >Level: {{ rowData.LevelName
+                      }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-col-12 p-p-2">
+                <div
+                  style="background-color: white"
+                >
+                  <div *ngIf="editingCus">
+                    <app-autocomplete
+                    [dataInput]="certificateData"
+                    label="Select Certificate"
+                    (onValueSelect)="onAutoCompleteSelected('cert', rowData,$event)"
+                  ></app-autocomplete>
+                  </div>
+                  <div *ngIf="!editingCus">
+                    <span class="custom-text-theme-small"
+                      >Certificate: {{ rowData.CertificateName
+                      }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-col-12 p-p-2">
+                <div
+                  style="background-color: white"
+                >
+                  <div *ngIf="editingCus">
+                    <app-autocomplete
+                    [dataInput]="priceData"
+                    label="Select Price"
+                    (onValueSelect)="onAutoCompleteSelected('price', rowData,$event)"
+                  ></app-autocomplete>
+                  </div>
+                  <div *ngIf="!editingCus">
+                    <span class="custom-text-theme-small"
+                      >Price: {{ rowData.PriceName
+                      }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-col-12 p-p-2">
+                <div
+                  style="background-color: white"
+                >
+                  <div *ngIf="editingCus">
+                    <app-autocomplete
+                    [dataInput]="typeData"
+                    label="Select Type"
+                    (onValueSelect)="onAutoCompleteSelected('type', rowData,$event)"
+                  ></app-autocomplete>
+                  </div>
+                  <div *ngIf="!editingCus">
+                    <span class="custom-text-theme-small"
+                      >Type: {{ rowData.TypeName
+                      }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-col-12 p-p-2">
+                <div
+                  style="background-color: white"
+                >
+                  <div *ngIf="editingCus">
+                    <app-autocomplete
+                    [dataInput]="catmasterData"
+                    label="Select Tech Type"
+                    (onValueSelect)="onAutoCompleteSelected('catmaster', rowData,$event)"
+                  ></app-autocomplete>
+                  </div>
+                  <div *ngIf="!editingCus">
+                    <span class="custom-text-theme-small"
+                      >Tech Type: {{ rowData.CatmasterName
+                      }}</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <hr style="width: 90%; background-color: silver" color="silver" />
+
+            <div *ngIf="isRequest">
+                    <button class="p-button p-button-info" (click)="onActivateCourse(rowData)">
+                      Activate
+                    </button>
+            </div>
+
+          </ng-template>
+        </p-card>
+        <div>
+          <button
+            *ngIf="!editingCus && !deleting"
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            (click)="onRowEditInit(rowData)"
+            class="p-button-rounded p-button-text"
+          ></button>
+          <button
+            *ngIf="!deleting && !editingCus"
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            (click)="onRowDeleteInit(rowData)"
+            class="p-button-rounded p-button-text p-button-danger"
+          ></button>
+
+          <button
+            *ngIf="editingCus"
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-check"
+            (click)="onRowEditSave(rowData)"
+            class="p-button-rounded p-button-text p-button-success p-mr-2"
+          ></button>
+          <button
+            *ngIf="editingCus"
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-times"
+            (click)="onRowEditCancel(rowData, ri)"
+            class="p-button-rounded p-button-text p-button-danger"
+          ></button>
+
+          <button
+            *ngIf="deleting"
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-check"
+            (click)="onRowDelete(rowData)"
+            class="p-button-rounded p-button-text p-button-success p-mr-2"
+          >
+            De
+          </button>
+          <button
+            *ngIf="deleting"
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-times"
+            (click)="onRowDeleteCancel(rowData, ri)"
+            class="p-button-rounded p-button-text p-button-danger"
+          >
+            No
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <!-- 
+        <tr [pEditableRow]="rowData">
+          <td *ngFor="let col of tableHeaders">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData[col.field]" />
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ rowData[col.field] }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td style="text-align: center">
+          </td>
+        </tr> -->
+    <!-- </ng-template> -->
+  </p-table>
+</div>

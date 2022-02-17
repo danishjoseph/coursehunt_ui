@@ -1,0 +1,20 @@
+<div
+  class="p-grid p-d-flex p-jc-center p-text-center"
+  style="background-color: #efefff"
+>
+  <div
+    class="
+      p-col-12 p-lg-12 p-sm-12 p-d-flex p-jc-center p-flex-column p-text-center
+    "
+  >
+    <h1><span class="custom-text-primary">E-Learning</span> {{flexHeader}}</h1>
+  </div>
+  <div class="p-col-12 p-lg-9 p-sm-9">
+    <div class="p-grid p-d-flex p-jc-center">
+      <div *ngFor="let flex of flexData" class="p-col-12 p-lg-6 p-xl-3 p-sm-6">
+        <app-landing-platform-item *ngIf="flex.flag === 'platform'" [itemObject]="flex" ></app-landing-platform-item>
+        <app-top-trending-item *ngIf="flex.flag === 'category'" [itemObject]="flex"></app-top-trending-item>
+      </div>
+    </div>
+  </div>
+</div>

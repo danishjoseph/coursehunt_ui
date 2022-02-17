@@ -1,0 +1,13 @@
+<p-card (click)="navigateToHome(itemObject)" [style]="{ maxWidth: '270px', border: '0px solid grey', boxShadow: '0px 7px 49px -8px #D6E5E4', height: '270px', backgroundColor: '#FFFF', cursor: 'pointer' }" styleClass="p-m-1">
+  <ng-template pTemplate="header">
+    <div class="p-mb-0 p-p-2" style="border: 0px;box-shadow: 0px 7px 49px -8px #868d8c; border-radius: 5px; background-color: white;">
+      <img alt="Card" style="height: 180px;" [src]="itemObject.imgSrc" />
+    </div>
+    <div class="p-d-flex p-flex-column" style="background-color: white;">
+      <span style="font-size: 18px; font-weight: 600; line-height: 130%;"
+        >{{itemObject.name}}</span
+      >
+      <span style="font-size: medium; visibility: hidden;">4.5 <i class="pi pi-star" style="color: gold;"></i>(19,564) </span>
+    </div>
+  </ng-template>
+</p-card>

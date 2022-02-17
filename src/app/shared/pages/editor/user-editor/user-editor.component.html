@@ -1,0 +1,79 @@
+<div class="p-grid p-p-6 p-jc-center p-text-center">
+    <div class="p-col-12 p-lg-3 p-sm-12 p-xl-3">
+      <app-editor-sidebar></app-editor-sidebar>
+    </div>
+    <div class="p-col-12 p-lg-8 p-sm-12 p-xl-8">
+      <p-card
+        [style]="{
+          border: '0px solid grey',
+          boxShadow: 'box-shadow: 0px 7px 49px -8px #D6E5E4'
+        }"
+        styleClass="p-m-1 p-p-4"
+      >
+        <ng-template pTemplate="header">
+          <form [formGroup]="userForm">
+            <!-- <div class="p-mb-1" style="border: 0px">
+              <img alt="Card" style="max-width: 237px" [src]="url" />
+              <app-file-uploader
+                (onFileUpload)="onPlatformImgChange($event)"
+                (onFileCleared)="clearImg()"
+              ></app-file-uploader>
+            </div> -->
+            <div class="p-mb-1 p-p-2">
+              <input
+                size="small"
+                placeholder="User Full name"
+                formControlName="userName"
+                type="text"
+                pInputText
+              />
+            </div>
+            <div class="p-mb-1 p-p-2">
+              <input
+                size="small"
+                placeholder="Username / Email"
+                formControlName="userEmail"
+                type="text"
+                pInputText
+              />
+            </div>
+            <div class="p-mb-1 p-p-2">
+              <input
+                size="small"
+                placeholder="Password"
+                formControlName="userPassword"
+                type="password"
+                pInputText
+              />
+            </div>
+            <div class="p-col-12 p-lg-12 p-sm-12 p-jc-center">
+                <app-autocomplete
+                  [dataInput]="rolesData"
+                  label="Select Role"
+                  (onValueSelect)="onDropDownSelect($event, 'role')"
+                ></app-autocomplete>
+              </div>
+  
+            <div>
+              <button
+                class="p-button p-button-success"
+                (click)="submitPlatform(userForm)"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </ng-template>
+      </p-card>
+      <div class="p-mt-3 p-p-3" style="background-color: silver;">
+        <app-edit-table
+          tableTitle="Users"
+          [tableData]="userTableData"
+          [tableHeaders]="userDataHeaders"
+          (onRowEditSaveOut)="onUserEdit($event)"
+          (onRowDeleteOut)="onUserDelete($event)"
+        ></app-edit-table>
+      </div>
+    </div>
+  </div>
+  

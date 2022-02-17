@@ -1,0 +1,60 @@
+<div class="p-grid p-p-6">
+  <div
+    class="p-col-12 p-lg-4 p-xl-4 p-sm-12 p-d-flex p-pr-6 p-jc-end p-ai-center"
+    style="border-right: 1px solid purple"
+  >
+    <img
+      class="p-mx-2"
+      style="height: 30px"
+      src="assets/images/courseHunt.png"
+    />
+  </div>
+  <div class="p-col-12 p-lg-8 p-xl-8 p-sm-12 p-pl-xl-6">
+    <div class="p-col-12 p-lg-7 p-card p-shadow-6 p-p-xl-3 p-p-sm-0">
+      <div class="p-px-2">
+        <h2 style="color: #635dff">Login</h2>
+      </div>
+      <form [formGroup]="loginForm">
+        <div class="p-mb-1 p-p-2">
+          <input
+            style="width: 100%"
+            placeholder="Username"
+            formControlName="username"
+            type="text"
+            pInputText
+          />
+        </div>
+        <div class="p-mb-1 p-p-2">
+          <input
+            size="small"
+            style="width: 100%"
+            placeholder="password"
+            formControlName="password"
+            type="password"
+            pInputText
+          />
+        </div>
+        <div class="p-mb-1 p-p-2">
+          <button
+            class="custom-button-primary p-button p-px-6 p-mt-3 p-mb-6"
+            (click)="login()"
+          >
+            <span
+              style="
+                font-family: Poppins;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 30px;
+                letter-spacing: 0em;
+                text-align: left;
+              "
+            >
+              Submit
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

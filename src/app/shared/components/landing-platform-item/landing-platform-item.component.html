@@ -1,0 +1,15 @@
+<p-card (click)="navigateToHome(itemObject)" [style]="{ border: '0px solid grey', boxShadow: 'box-shadow: 0px 7px 49px -8px #D6E5E4', height:'320px', width:'270px' }" styleClass="p-m-1 p-p-4">
+    <ng-template pTemplate="header">
+      <div class="p-mb-1 p-p-2" style="border: 0px;">
+        <img alt="Card" style="max-width: 137px;" [src]="itemObject.imgSrc" />
+      </div>
+      <div  class="p-d-flex p-flex-column p-py-3">
+        <span *ngIf="itemObject.rating" style="font-size: medium">{{itemObject.rating}} <i class="pi pi-star" style="color: gold;"></i>(19,564) </span>
+        <span *ngIf="!itemObject.rating" style="font-size: mediuml; visibility: hidden;">{{itemObject.rating}}sdff <i class="pi pi-star" style="color: gold;"></i>(19,564) </span>
+      </div>
+      <div>
+        <button class="p-button custom-button-outlined"> Try {{itemObject.name}}</button>
+      </div>
+    </ng-template>
+  </p-card>
+  
